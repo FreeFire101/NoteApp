@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
 import 'package:flutter_one/responsive_ui/size_config.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../pages/note_detail.dart';
 
 class NoteCard extends StatelessWidget {
@@ -26,20 +26,21 @@ class NoteCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Delete All Data'),
+                      Text(AppLocalizations.of(context)!.deleteAll),
                       IconButton(
                         onPressed: () {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text(
-                                  'You are about to delete all the datas. Are You Sure?'),
+                              title: Text(AppLocalizations.of(context)!
+                                  .deleteAllMessage),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text('Cancel'),
+                                  child: Text(
+                                      AppLocalizations.of(context)!.cancel),
                                 ),
                                 TextButton(
                                   onPressed: () {
@@ -70,25 +71,30 @@ class NoteCard extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NoteDetail(
-                                      noteTitle: key,
-                                      noteDescription: noteDataa,
-                                      title: 'Edit your Note')));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NoteDetail(
+                                  noteTitle: key,
+                                  noteDescription: noteDataa,
+                                  title:
+                                      AppLocalizations.of(context)!.editNote),
+                            ),
+                          );
                         },
                         child: Dismissible(
                           confirmDismiss: (c) => showDialog(
                               context: context,
                               builder: (c) => AlertDialog(
-                                    title:
-                                        const Text('Are you sure to delete?'),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .deleteOneMessage),
                                     actions: [
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: const Text('Cancel'),
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .cancel),
                                       ),
                                       TextButton(
                                         onPressed: () {
@@ -136,8 +142,8 @@ class NoteCard extends StatelessWidget {
                 ),
               ],
             )
-          : const Center(
-              child: Text('No Data. Start entering notes'),
+          : Center(
+              child: Text(AppLocalizations.of(context)!.noData),
             ),
     );
   }

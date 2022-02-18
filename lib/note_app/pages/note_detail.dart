@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
 import 'package:flutter_one/responsive_ui/size_config.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NoteDetail extends StatefulWidget {
   const NoteDetail(
@@ -49,18 +50,18 @@ class _NoteDetailState extends State<NoteDetail> {
           children: [
             TextField(
               controller: _textTitleController,
-              decoration: const InputDecoration(
-                labelText: 'Title',
-                hintText: 'Title',
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.title,
+                hintText: AppLocalizations.of(context)!.title,
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 2 * SizeConfig.heightMultiplier!),
             TextField(
-              decoration: const InputDecoration(
-                labelText: 'Description',
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.descriptionNote,
                 border: OutlineInputBorder(),
-                hintText: 'Enter your description for your note here..',
+                hintText: AppLocalizations.of(context)!.descriptionNote,
               ),
               maxLines: 5,
               controller: _textDescriptionController,
@@ -72,7 +73,7 @@ class _NoteDetailState extends State<NoteDetail> {
                 setNoteDetail.setNoteData(textTitle, textDescription);
                 Navigator.of(context).pop();
               },
-              child: const Text('Submit'),
+              child: Text(AppLocalizations.of(context)!.submit),
             ),
           ],
         ),

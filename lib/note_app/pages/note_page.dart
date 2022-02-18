@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_one/main.dart';
 import 'package:flutter_one/note_app/pages/note_detail.dart';
+import 'package:flutter_one/note_app/provider/language_provider.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
 import 'package:flutter_one/note_app/widgets/note_card.dart';
 import 'package:flutter_one/responsive_ui/size_config.dart';
 import 'package:flutter_one/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotePage extends StatefulWidget {
   const NotePage({Key? key}) : super(key: key);
@@ -17,24 +20,51 @@ class _NotePageState extends State<NotePage> {
   @override
   Widget build(BuildContext context) {
     // final noteTextData = Provider.of<NoteProvider>(context);
+    final appLanguage = Provider.of<AppLanguageProvider>(context);
     final themeEditor = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Note App'),
+        title: Text(AppLocalizations.of(context)!.appName),
         actions: [
+          // Row(
+          //   children: [
+          //     (themeEditor.isDarkMode == true)
+          //         ? const Icon(Icons.brightness_2)
+          //         : const Icon(Icons.brightness_7),
+          //     Switch.adaptive(
+          //       value: themeEditor.isDarkMode,
+          //       onChanged: (value) {
+          //         themeEditor.setTheme();
+          //       },
+          //     ),
+          //   ],
+          // ),
           Row(
             children: [
-              (themeEditor.isDarkMode == true)
-                  ? const Icon(Icons.brightness_2)
-                  : const Icon(Icons.brightness_7),
-              Switch.adaptive(
-                  value: themeEditor.isDarkMode,
-                  onChanged: (value) {
-                    themeEditor.setTheme();
-                  }),
+              TextButton(
+                onPressed: () {
+                  // context.read<AppLanguageProvider>().changeLanguage('ne');
+                  appLanguage.changeLanguage('ne');
+                },
+                child: Text(
+                  'नेपाली',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  appLanguage.changeLanguage('en');
+                  // context.read<AppLanguageProvider>().changeLanguage('en');
+                },
+                child: Text(
+                  'En',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ],
-          )
+          ),
         ],
       ),
       // body: Center(
@@ -110,7 +140,8 @@ class _NotePageState extends State<NotePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const NoteDetail(title: 'Add your Note')),
+                builder: (context) =>
+                    NoteDetail(title: AppLocalizations.of(context)!.addNote)),
           );
         },
         child: const Icon(Icons.note_add),

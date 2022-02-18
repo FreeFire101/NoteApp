@@ -1,10 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_one/localization/l10n.dart';
 import 'package:flutter_one/note_app/pages/note_page.dart';
+import 'package:flutter_one/note_app/provider/language_provider.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
 import 'package:flutter_one/theme/custom_theme.dart';
 import 'package:flutter_one/theme/theme_provider.dart';
 import 'package:flutter_one/responsive_ui/size_config.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'provider_example/provider_class.dart';
 import 'provider_example/provider_eg.dart';
@@ -31,6 +37,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => NoteProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => AppLanguageProvider(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -49,6 +58,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final appLanguage = Provider.of<AppLanguageProvider>(context).language;
     final themeNotifier = Provider.of<ThemeProvider>(context);
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -59,6 +69,14 @@ class MyApp extends StatelessWidget {
               title: 'Flutter Demo',
               debugShowCheckedModeBanner: false,
               theme: themeNotifier.DarkTheme ? dark : light,
+              supportedLocales: L10n.all,
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              locale: appLanguage,
               // theme: ThemeData(
               //   primarySwatch: Colors.blue,
               // ),
