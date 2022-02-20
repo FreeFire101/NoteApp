@@ -15,8 +15,10 @@ class WeatherHome extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.keyboard_arrow_left),
                 ),
                 // const SizedBox(width: 20),
                 const Expanded(

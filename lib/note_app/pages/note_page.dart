@@ -28,43 +28,43 @@ class _NotePageState extends State<NotePage> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.appName),
         actions: [
-          // Row(
-          //   children: [
-          //     (themeEditor.isDarkMode == true)
-          //         ? const Icon(Icons.brightness_2)
-          //         : const Icon(Icons.brightness_7),
-          //     Switch.adaptive(
-          //       value: themeEditor.isDarkMode,
-          //       onChanged: (value) {
-          //         themeEditor.setTheme();
-          //       },
-          //     ),
-          //   ],
-          // ),
           Row(
             children: [
-              TextButton(
-                onPressed: () {
-                  // context.read<AppLanguageProvider>().changeLanguage('ne');
-                  appLanguage.changeLanguage('ne');
+              (themeEditor.isDarkMode == true)
+                  ? const Icon(Icons.brightness_2)
+                  : const Icon(Icons.brightness_7),
+              Switch.adaptive(
+                value: themeEditor.isDarkMode,
+                onChanged: (value) {
+                  themeEditor.setTheme();
                 },
-                child: Text(
-                  'नेपाली',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  appLanguage.changeLanguage('en');
-                  // context.read<AppLanguageProvider>().changeLanguage('en');
-                },
-                child: Text(
-                  'En',
-                  style: TextStyle(color: Colors.white),
-                ),
               ),
             ],
           ),
+          // Row(
+          //   children: [
+          //     TextButton(
+          //       onPressed: () {
+          //         // context.read<AppLanguageProvider>().changeLanguage('ne');
+          //         appLanguage.changeLanguage('ne');
+          //       },
+          //       child: Text(
+          //         'नेपाली',
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //     ),
+          //     TextButton(
+          //       onPressed: () {
+          //         appLanguage.changeLanguage('en');
+          //         // context.read<AppLanguageProvider>().changeLanguage('en');
+          //       },
+          //       child: Text(
+          //         'En',
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
       // body: Center(

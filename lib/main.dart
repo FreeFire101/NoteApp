@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_one/http_post_method/http_post_home.dart';
 import 'package:flutter_one/localization/l10n.dart';
+import 'package:flutter_one/main_page.dart';
 import 'package:flutter_one/note_app/pages/note_page.dart';
 import 'package:flutter_one/note_app/provider/language_provider.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
@@ -14,6 +16,8 @@ import 'package:flutter_one/weather_app/weather_service/weather_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'http_delete_method/http_delete_page.dart';
+import 'http_delete_method/http_delete_service.dart';
 import 'provider_example/provider_class.dart';
 import 'provider_example/provider_eg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -44,6 +48,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => WeatherServiceProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HttpDeleteService(),
         ),
       ],
       child: const MyApp(),
@@ -85,12 +92,14 @@ class MyApp extends StatelessWidget {
               // theme: ThemeData(
               //   primarySwatch: Colors.blue,
               // ),
-              // home:  const MainPage(),
+              home: const MainPage(),
               // home: const ResponsiveUiPage(),
               // home: const ProviderExample(),
               // home: const MyErrorWidget(),
               // home: const NotePage(),
-              home: const WeatherHome(),
+              // home: const WeatherHome(),
+              // home: HttpPostHome(),
+              // home: HttpDeletePage(),
             );
           },
         );
