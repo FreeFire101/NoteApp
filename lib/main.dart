@@ -9,6 +9,8 @@ import 'package:flutter_one/note_app/provider/note_provider.dart';
 import 'package:flutter_one/theme/custom_theme.dart';
 import 'package:flutter_one/theme/theme_provider.dart';
 import 'package:flutter_one/responsive_ui/size_config.dart';
+import 'package:flutter_one/weather_app/weather_pages/weather_home.dart';
+import 'package:flutter_one/weather_app/weather_service/weather_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -39,6 +41,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => AppLanguageProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WeatherServiceProvider(),
         ),
       ],
       child: const MyApp(),
@@ -84,7 +89,8 @@ class MyApp extends StatelessWidget {
               // home: const ResponsiveUiPage(),
               // home: const ProviderExample(),
               // home: const MyErrorWidget(),
-              home: const NotePage(),
+              // home: const NotePage(),
+              home: const WeatherHome(),
             );
           },
         );

@@ -3,11 +3,11 @@ import 'package:flutter_one/responsive_ui/size_config.dart';
 import 'package:flutter/foundation.dart' as foundation;
 
 Widget errorScreen(dynamic detailsException) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text('Error'),
-    ),
-    body: Padding(
+  return SafeArea(
+    // appBar: AppBar(
+    //   title: const Text('Error'),
+    // ),
+    child: Padding(
       padding: EdgeInsets.symmetric(
         vertical: 2 * SizeConfig.heightMultiplier!,
         horizontal: 6 * SizeConfig.widthMultiplier!,
