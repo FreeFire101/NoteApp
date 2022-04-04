@@ -1,6 +1,6 @@
 # flutter_one
 
-A new Flutter project.
+Flutter One where various flutter widgets and other things are done to learn as well as test it.
 
 ## Getting Started
 
