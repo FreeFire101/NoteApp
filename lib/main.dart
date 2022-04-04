@@ -2,12 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_one/flutter_mvvm/user_list/views_models/user_view_model.dart';
 import 'package:flutter_one/http_post_method/http_post_home.dart';
 import 'package:flutter_one/localization/l10n.dart';
 import 'package:flutter_one/main_page.dart';
 import 'package:flutter_one/note_app/pages/note_page.dart';
 import 'package:flutter_one/note_app/provider/language_provider.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
+import 'package:flutter_one/sqlite/sqlite_pages/sqlite_home.dart';
 import 'package:flutter_one/theme/custom_theme.dart';
 import 'package:flutter_one/theme/theme_provider.dart';
 import 'package:flutter_one/responsive_ui/size_config.dart';
@@ -21,13 +23,14 @@ import 'http_delete_method/http_delete_service.dart';
 import 'provider_example/provider_class.dart';
 import 'provider_example/provider_eg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'screen_utils_testing/screen_utils_testing.dart';
 import 'widgets/custom_red_error.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //custom red error widget
-  ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) =>
-      errorScreen(flutterErrorDetails.exception);
+  // ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) =>
+  //     errorScreen(flutterErrorDetails.exception);
   await Hive.initFlutter();
   var box = await Hive.openBox('note_box');
   var noteBox = await Hive.openBox('note_box1');
@@ -52,8 +55,11 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => HttpDeleteService(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => UserViewModel(),
+        ),
       ],
-      child: const MyApp(),
+      child: const ScreenUtilsTesting(),
     ),
     // ChangeNotifierProvider(
     //   create: (context) => ThemeProvider(),
@@ -100,6 +106,7 @@ class MyApp extends StatelessWidget {
               // home: const WeatherHome(),
               // home: HttpPostHome(),
               // home: HttpDeletePage(),
+              // home: const SqliteHome(),
             );
           },
         );

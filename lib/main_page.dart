@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_one/flutter_mvvm/mvvm_home.dart';
 import 'package:flutter_one/http_delete_method/http_delete_page.dart';
 import 'package:flutter_one/note_app/pages/note_page.dart';
 import 'package:flutter_one/settings/settings_page.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_one/youtube_video_list/youtube_video_list.dart';
 import 'http_post_method/http_post_home.dart';
 import 'provider_example/provider_eg.dart';
 import 'responsive_ui/responsive_ui_page.dart';
+import 'screen_utils_testing/screen_utils_testing.dart';
+import 'sqlite/sqlite_pages/sqlite_home.dart';
 import 'widgets/error_widget.dart';
 
 class MainPage extends StatelessWidget {
@@ -119,6 +122,39 @@ class MainPage extends StatelessWidget {
                 );
               },
               child: const Text('Http Delete Method'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SqliteHome(),
+                  ),
+                );
+              },
+              child: const Text('Sqlite'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MvvmHome(),
+                  ),
+                );
+              },
+              child: const Text('Flutter MVVM'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenUtilsTesting(),
+                  ),
+                );
+              },
+              child: const Text('Screen Utils Testing'),
             ),
           ],
         ),
