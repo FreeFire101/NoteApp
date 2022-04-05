@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_one/custom_circular_progress/custom_circular_progress.dart';
 import 'package:flutter_one/flutter_mvvm/mvvm_home.dart';
 import 'package:flutter_one/http_delete_method/http_delete_page.dart';
 import 'package:flutter_one/note_app/pages/note_page.dart';
@@ -25,7 +26,7 @@ class MainPage extends StatelessWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SettingsPage(),
+                builder: (context) => const SettingsPage(),
               ),
             ),
             icon: const Icon(Icons.settings),
@@ -155,6 +156,56 @@ class MainPage extends StatelessWidget {
                 );
               },
               child: const Text('Screen Utils Testing'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CustomCircularProgress(),
+                  ),
+                );
+              },
+              child: const Text('Custom Circular Progress Indicator'),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      extendBody: true,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              iconSize: 20.0,
+              padding: const EdgeInsets.only(left: 28.0),
+              icon: const Icon(Icons.home),
+              onPressed: () {},
+            ),
+            IconButton(
+              iconSize: 20.0,
+              padding: const EdgeInsets.only(right: 28.0),
+              icon: const Icon(Icons.search),
+              onPressed: () {},
+            ),
+            IconButton(
+              iconSize: 20.0,
+              padding: const EdgeInsets.only(left: 28.0),
+              icon: const Icon(Icons.notifications),
+              onPressed: () {},
+            ),
+            IconButton(
+              iconSize: 20.0,
+              padding: const EdgeInsets.only(right: 28.0),
+              icon: const Icon(Icons.list),
+              onPressed: () {},
             ),
           ],
         ),

@@ -59,7 +59,7 @@ void main() async {
           create: (context) => UserViewModel(),
         ),
       ],
-      child: const ScreenUtilsTesting(),
+      child: const MyApp(),
     ),
     // ChangeNotifierProvider(
     //   create: (context) => ThemeProvider(),
@@ -84,6 +84,8 @@ class MyApp extends StatelessWidget {
           builder: (context, orientation) {
             SizeConfig().init(constraints, orientation);
             return MaterialApp(
+              // showPerformanceOverlay: true,
+              // showSemanticsDebugger: true,
               title: 'Flutter Demo',
               debugShowCheckedModeBanner: false,
               theme: themeNotifier.DarkTheme ? dark : light,
