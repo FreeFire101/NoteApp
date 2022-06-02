@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_one/custom_circular_progress/custom_circular_progress.dart';
 import 'package:flutter_one/flutter_mvvm/mvvm_home.dart';
 import 'package:flutter_one/http_delete_method/http_delete_page.dart';
+import 'package:flutter_one/isolate_example/isolate_example.dart';
 import 'package:flutter_one/note_app/pages/note_page.dart';
 import 'package:flutter_one/settings/settings_page.dart';
 import 'package:flutter_one/weather_app/weather_pages/weather_home.dart';
@@ -167,6 +168,17 @@ class MainPage extends StatelessWidget {
                 );
               },
               child: const Text('Custom Circular Progress Indicator'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const IsolateExample(),
+                  ),
+                );
+              },
+              child: const Text('Isolate/Compute Example'),
             ),
           ],
         ),

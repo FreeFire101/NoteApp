@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_one/adv_ui_8ball/main_page.dart';
 import 'package:flutter_one/flutter_mvvm/user_list/views_models/user_view_model.dart';
 import 'package:flutter_one/http_post_method/http_post_home.dart';
 import 'package:flutter_one/localization/l10n.dart';
@@ -90,7 +91,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: themeNotifier.DarkTheme ? dark : light,
               supportedLocales: L10n.all,
-              localizationsDelegates: [
+              localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
@@ -100,8 +101,8 @@ class MyApp extends StatelessWidget {
               // theme: ThemeData(
               //   primarySwatch: Colors.blue,
               // ),
-              home: const MainPage(),
-              // home: const ResponsiveUiPage(),
+              // home: const MainPage(),
+              home: const AdvPageMain(),
               // home: const ProviderExample(),
               // home: const MyErrorWidget(),
               // home: const NotePage(),
