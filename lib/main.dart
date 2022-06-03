@@ -1,34 +1,55 @@
-import 'dart:math';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_one/adv_ui_8ball/main_page.dart';
 import 'package:flutter_one/flutter_mvvm/user_list/views_models/user_view_model.dart';
-import 'package:flutter_one/http_post_method/http_post_home.dart';
 import 'package:flutter_one/localization/l10n.dart';
-import 'package:flutter_one/main_page.dart';
-import 'package:flutter_one/note_app/pages/note_page.dart';
 import 'package:flutter_one/note_app/provider/language_provider.dart';
 import 'package:flutter_one/note_app/provider/note_provider.dart';
-import 'package:flutter_one/sqlite/sqlite_pages/sqlite_home.dart';
+import 'package:flutter_one/responsive_ui/size_config.dart';
 import 'package:flutter_one/theme/custom_theme.dart';
 import 'package:flutter_one/theme/theme_provider.dart';
-import 'package:flutter_one/responsive_ui/size_config.dart';
-import 'package:flutter_one/weather_app/weather_pages/weather_home.dart';
 import 'package:flutter_one/weather_app/weather_service/weather_service.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'http_delete_method/http_delete_page.dart';
 import 'http_delete_method/http_delete_service.dart';
 import 'provider_example/provider_class.dart';
-import 'provider_example/provider_eg.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'screen_utils_testing/screen_utils_testing.dart';
-import 'widgets/custom_red_error.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('bg message shown: ${message.messageId}');
+}
+
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'high importance channel',
+  'high importancce notificaitons',
+  importance: Importance.high,
+  playSound: true,
+  description: 'this is the description',
+);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
   //custom red error widget
   // ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) =>
   //     errorScreen(flutterErrorDetails.exception);
